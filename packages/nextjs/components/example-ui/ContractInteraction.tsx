@@ -1,31 +1,29 @@
 import { useState } from "react";
-import { CopyIcon } from "./assets/CopyIcon";
-import { DiamondIcon } from "./assets/DiamondIcon";
+import { AddressInput } from "../scaffold-eth";
 import { HareIcon } from "./assets/HareIcon";
-import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const ContractInteraction = () => {
-  const [visible, setVisible] = useState(true);
-  const [newGreeting, setNewGreeting] = useState("");
+  // const [visible, setVisible] = useState(true);
+  // const [newGreeting, setNewGreeting] = useState("");
+  const [address, setAddress] = useState("");
 
-  const { writeAsync, isLoading } = useScaffoldContractWrite({
-    contractName: "YourContract",
-    functionName: "setGreeting",
-    args: [newGreeting],
-    value: "0.01",
-    onBlockConfirmation: txnReceipt => {
-      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
-    },
-  });
+  // const { writeAsync, isLoading } = useScaffoldContractWrite({
+  //   contractName: "YourContract",
+  //   functionName: "setGreeting",
+  //   args: [newGreeting],
+  //   value: "0.01",
+  //   onBlockConfirmation: txnReceipt => {
+  //     console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+  //   },
+  // });
 
   return (
-    <div className="flex bg-base-300 relative pb-10">
-      <DiamondIcon className="absolute top-24" />
-      <CopyIcon className="absolute bottom-0 left-36" />
+    <div className="flex relative pb-10">
+      {/* <DiamondIcon className="absolute top-24" /> */}
+      {/* <CopyIcon className="absolute bottom-0 left-36" /> */}
       <HareIcon className="absolute right-0 bottom-24" />
       <div className="flex flex-col w-full mx-5 sm:mx-8 2xl:mx-20">
-        <div className={`mt-10 flex gap-2 ${visible ? "" : "invisible"} max-w-2xl`}>
+        {/* <div className={`mt-10 flex gap-2 ${visible ? "" : "invisible"} max-w-2xl`}>
           <div className="flex gap-5 bg-base-200 bg-opacity-80 z-0 p-7 rounded-2xl shadow-lg">
             <span className="text-3xl">👋🏻</span>
             <div>
@@ -48,12 +46,14 @@ export const ContractInteraction = () => {
           >
             <XMarkIcon className="h-4 w-4" />
           </button>
-        </div>
+        </div> */}
 
-        <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
-          <span className="text-4xl sm:text-6xl text-black">Set a Greeting_</span>
+        <div className="flex flex-col mt-6 px-7 py-8  bg-base-500 rounded-2xl shadow-lg border-2 border-primary">
+          {/* <span className="text-4xl sm:text-6xl text-black">Set a Greeting_</span> */}
+          <p>Address Input</p>
+          <AddressInput onChange={setAddress} value={address} placeholder="Input your address" />
 
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
+          {/* <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
               placeholder="Write your greeting here"
@@ -82,7 +82,7 @@ export const ContractInteraction = () => {
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Price:</span>
             <div className="badge badge-warning">0.01 ETH + Gas</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
